@@ -53,137 +53,16 @@
                         </div>
                     </div>
                     <ul class="sidebar-contacts__list">
-                        <li class="sidebar-contacts__contact">
+                        <li v-for="contact in contacts" class="sidebar-contacts__contact">
                             <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
+                                <img :src="contact.avatar" :alt="contact.name">
                             </div>
                             <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
+                                <div class="contact__name">{{contact.name}}</div>
+                                <div class="contact__last-message">{{contact.messages[contact.messages.length - 1].text}}</div>
                             </div>
-                            <div class="contact__time">11:27</div>
+                            <div class="contact__time">{{contact.messages[contact.messages.length - 1].date}}</div>
                         </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        <li class="sidebar-contacts__contact">
-                            <div class="contact__avatar">
-                                <img src="img/avatar-01.png" alt="">
-                            </div>
-                            <div class="contact__text">
-                                <div class="contact__name">Vincenzo</div>
-                                <div class="contact__last-message">Ciao.</div>
-                            </div>
-                            <div class="contact__time">11:27</div>
-                        </li>
-                        
                     </ul>
                 </div>
             </div>
