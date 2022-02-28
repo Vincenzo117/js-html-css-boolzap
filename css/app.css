@@ -4,3 +4,19 @@
     box-sizing: border-box;
 }
 
+
+/* Background */
+
+.background {
+    height: 100vh;
+}
+
+.background__header {
+    height: 130px;
+    background-color: #00A884;
+}
+
+.background__body {
+    height: calc(100vh - 130px);
+    background-color: #E4E3DE;
+}
