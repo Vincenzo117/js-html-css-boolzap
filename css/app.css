@@ -2,6 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
 }
 
 
@@ -38,9 +47,59 @@
 .sidebar {
     width: 30%;
     min-width: 300px;
+    background-color: white;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
     background-color: #F0F2F5;
 }
 
+.sidebar-header__profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.sidebar-header__action-list {
+    display: flex;
+    gap: 30px;
+    color: #54656F;
+    margin-right: 20px;
+}
+
+.sidebar-banner {
+    display: flex;
+    align-items: center;
+    height: 90px;
+    padding: 10px 15px;
+    background-color: #53BDEB;
+    gap: 17px;
+}
+
+.sidebar-banner__icon {
+    background-color: white;
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #53BDEB;
+}
+
+.sidebar-banner__title {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.sidebar-banner__text {
+    font-size: 14px;
+}
 
 /* Conversation panel */
 

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/media-queries.css">
     <title>Boolzap</title>
@@ -18,14 +22,38 @@
     <main>
         <div class="app-wrapper">
             <div class="sidebar">
-
+                <div class="sidebar-header">
+                    <div class="sidebar-header__profile-avatar">
+                        <img :src="profile.avatar" :alt="profile.name">
+                    </div>
+                    <ul class="sidebar-header__action-list">
+                        <li class="sidebar-header__action-icon"><i class="fa-solid fa-circle-notch"></i></li>
+                        <li class="sidebar-header__action-icon"><i class="fas fa-comment-alt"></i></li>
+                        <li class="sidebar-header__action-icon"><i class="fas fa-ellipsis-v"></i></li>
+                    </ul>
+                </div>
+                <div class="sidebar-banner">
+                    <div class="sidebar-banner__icon">
+                        <i class="fas fa-bell-slash"></i>
+                    </div>
+                    <div>
+                        <div class="sidebar-banner__title">
+                            Ricevi notifiche di nuovi messaggi
+                        </div>
+                        <div class="sidebar-banner__text">
+                            Attiva notifiche desktop <i class="fas fa-angle-right"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="conversation-panel">
-                
+               
             </div>
         </div>
     </main>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
