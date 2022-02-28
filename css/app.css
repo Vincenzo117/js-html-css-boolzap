@@ -16,6 +16,11 @@ img {
 a {
     color: black;
 }
+
+i {
+    cursor: pointer;
+}
+
 /* Background */
 
 .background {
@@ -187,10 +192,111 @@ a {
     font-size: 12px;
     color: #8696A0;
     white-space: nowrap;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 /* Conversation panel */
 
 .conversation-panel {
     background-color: #F8F8F8;
     flex-grow: 1;
+}
+
+.connection-screen {
+    border-bottom: 6px solid #25D366;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+    height: 100%;
+    display: none;
+}
+
+.connection__img {
+    width: 250px;
+}
+
+.connection__text {
+    text-align: center;
+    width: 400px;
+    color: #8696A0;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.connection__text-title {
+    font-weight: 300;
+    font-size: 34px;
+    margin-bottom: 35px;
+}
+
+.conversation-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversation-header , .conversation-input-bar {
+    background-color: #F0F2F5;
+    padding: 10px 15px;
+}
+
+.conversation-messages {
+    flex-grow: 1;
+    background-image: url("../img/conversation-bk.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.conversation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.conversation-header__contact-info {
+    display: flex;
+    gap: 15px;
+}
+
+.conversation-header__contact-avatar {
+    min-width: 40px;
+    max-width: 40px;;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.conversation-header__contact-name {
+    font-size: 17px;
+}
+
+.conversation-header__contact-access {
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.conversation-header__action-list {
+    display: flex;
+    gap: 30px;
+    color: #54656F;
+    margin-right: 20px;
+}
+
+.conversation-input-bar {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    color: #54656F;
+}
+
+#conversation-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 0;
+    border-radius: 5px;
 }

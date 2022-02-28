@@ -12,3 +12,13 @@
         transform: translate(-50% , -50%);
     }
 }
+
+/* Responsiveness conversation panel */
+@media screen and  (width > 1050px){
+    .connection__img {
+        width: 350px;
+    }
+    .connection__text {
+        width: 600px;
+    }
+}

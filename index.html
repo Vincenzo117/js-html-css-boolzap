@@ -21,6 +21,7 @@
 
     <main>
         <div class="app-wrapper">
+
             <div class="sidebar">
                 <div class="sidebar-header">
                     <div class="sidebar-header__profile-avatar">
@@ -66,8 +67,42 @@
                     </ul>
                 </div>
             </div>
+
             <div class="conversation-panel">
-               
+               <div class="connection-screen">
+                    <div class="connection__img">
+                        <img src="img/connection.jpg" alt="">
+                    </div>
+                    <div class="connection__text">
+                        <h2 class="connection__text-title">Mantieni il telefono connesso</h2>
+                        <p>WhatsApp si collega al tuo telefono per sincronizzare i messaggi. Per ridurre l'utilizzo dei dati, collega il telefono al Wi-Fi.</p>
+                    </div>
+               </div>
+               <div class="conversation-screen">
+                   <div class="conversation-header">
+                    <div class="conversation-header__contact-info">
+                        <div class="conversation-header__contact-avatar">
+                           <img src="img/avatar-02.png" alt="Piero">
+                        </div>
+                        <div>
+                            <div class="conversation-header__contact-name">Piero</div>
+                            <div class="conversation-header__contact-access">Ultimo aceejdsaofghasgh</div>
+                        </div>
+                    </div>
+                    <ul class="conversation-header__action-list">
+                        <li class="conversation-header__action-icon"><i class="fas fa-search"></i></li>
+                        <li class="conversation-header__action-icon"><i class="fas fa-paperclip"></i></li>
+                        <li class="conversation-header__action-icon"><i class="fas fa-ellipsis-v"></i></li>
+                    </ul>
+                   </div>
+                    <div class="conversation-messages"></div>
+                    <div class="conversation-input-bar">
+                        <div class="input-bar__emoji-icon"><i class="fas fa-grin-alt"></i></div>
+                        <div class="input-bar__attach-icon"><i class="fas fa-paperclip"></i></div>
+                        <input id="conversation-input" type="text" placeholder="Scrivi un messaggio">
+                        <div class="input-bar__mic-icon"><i class="fas fa-microphone"></i></div>
+                    </div>
+               </div>
             </div>
         </div>
     </main>
