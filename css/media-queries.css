@@ -1,0 +1,14 @@
+/* Responsiveness app wrapper */
+@media screen and (width > 1440px) {
+    .background {
+        display: block;
+    }
+    .app-wrapper {
+        width: 1400px;
+        height: 95vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% , -50%);
+    }
+}

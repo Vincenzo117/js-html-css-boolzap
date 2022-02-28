@@ -9,6 +9,7 @@
 
 .background {
     height: 100vh;
+    display: none;
 }
 
 .background__header {
@@ -19,4 +20,31 @@
 .background__body {
     height: calc(100vh - 130px);
     background-color: #E4E3DE;
+}
+
+
+/* App */
+
+.app-wrapper {
+    width: 100vw;
+    height: 100vh;
+    background-color: #F8F8F8;
+    display: flex;
+}
+
+
+/* Sidebar */
+
+.sidebar {
+    width: 30%;
+    min-width: 300px;
+    background-color: #F0F2F5;
+}
+
+
+/* Conversation panel */
+
+.conversation-panel {
+    background-color: #F8F8F8;
+    flex-grow: 1;
 }
