@@ -211,7 +211,7 @@ i {
     justify-content: center;
     gap: 45px;
     height: 100%;
-    display: none;
+
 }
 
 .connection__img {
@@ -236,6 +236,7 @@ i {
     height: 100%;
     display: flex;
     flex-direction: column;
+    display: none;
 }
 
 .conversation-header , .conversation-input-bar {
@@ -287,6 +288,26 @@ i {
     margin-right: 20px;
 }
 
+.conversation-messages {
+    display: flex;
+    flex-direction: column;
+    padding: 5vw;
+}
+
+.conversation-messages__message {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.conversation-messages__message--received {
+    background-color: white;
+    align-self: flex-start;
+}
+
+.conversation-messages__message--sent {
+    background-color: #D9FDD3;
+    align-self: flex-end;
+}
 .conversation-input-bar {
     display: flex;
     align-items: center;

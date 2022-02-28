@@ -10,7 +10,7 @@ const app = new Vue({
             {
                 name: 'Michele',
                 avatar: 'img/avatar-01.png',
-                visible: true,
+                visible: false,
                 messages: [
                     {
                     date: '10/01/2020 15:30:55',
@@ -32,7 +32,7 @@ const app = new Vue({
             {
                 name: 'Fabio',
                 avatar: 'img/avatar-02.png',
-                visible: true,
+                visible: false,
                 messages: [
                     {
                     date: '20/03/2020 16:30:00',
@@ -54,7 +54,7 @@ const app = new Vue({
             {
                 name: 'Samuele',
                 avatar: 'img/avatar-03.png',
-                visible: true,
+                visible: false,
                 messages: [
                     {
                     date: '28/03/2020 10:10:40',
@@ -76,7 +76,7 @@ const app = new Vue({
             {
                 name: 'Luisa',
                 avatar: 'img/avatar-04.png',
-                visible: true,
+                visible: false,
                 messages: [
                     {
                     date: '10/01/2020 15:30:55',
@@ -93,9 +93,13 @@ const app = new Vue({
         ],
     },
     methods: {
-        debug() {
-            console.log('debug');
-            return 'prova';
-        }
+        isNotActive() {
+            const activeObjects = this.contacts.filter( el =>  el.visible == true );
+            if (activeObjects.length == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        },
     }
 })

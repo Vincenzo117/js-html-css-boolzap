@@ -69,7 +69,7 @@
             </div>
 
             <div class="conversation-panel">
-               <div class="connection-screen">
+               <div v-show="isNotActive()" class="connection-screen">
                     <div class="connection__img">
                         <img src="img/connection.jpg" alt="">
                     </div>
@@ -78,6 +78,7 @@
                         <p>WhatsApp si collega al tuo telefono per sincronizzare i messaggi. Per ridurre l'utilizzo dei dati, collega il telefono al Wi-Fi.</p>
                     </div>
                </div>
+
                <div class="conversation-screen">
                    <div class="conversation-header">
                     <div class="conversation-header__contact-info">
@@ -95,7 +96,14 @@
                         <li class="conversation-header__action-icon"><i class="fas fa-ellipsis-v"></i></li>
                     </ul>
                    </div>
-                    <div class="conversation-messages"></div>
+                    <div class="conversation-messages">
+                        <div class="conversation-messages__message conversation-messages__message--received">
+                            adsfhkjadshfkjahsdfkljasdhf
+                        </div>
+                        <div class="conversation-messages__message conversation-messages__message--sent">
+                            adsfhkjadshfkjahsdfkljasdhf
+                        </div>
+                    </div>
                     <div class="conversation-input-bar">
                         <div class="input-bar__emoji-icon"><i class="fas fa-grin-alt"></i></div>
                         <div class="input-bar__attach-icon"><i class="fas fa-paperclip"></i></div>
