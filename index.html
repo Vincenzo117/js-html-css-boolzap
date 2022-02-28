@@ -60,15 +60,16 @@
                             </div>
                             <div class="contact__text">
                                 <div class="contact__name">{{contact.name}}</div>
-                                <div class="contact__last-message">{{contact.messages[contact.messages.length - 1].text}}</div>
+                                <div class="contact__last-message">{{getLastMessage(contact).text}}</div>
                             </div>
-                            <div class="contact__time">{{contact.messages[contact.messages.length - 1].date}}</div>
+                            <div class="contact__time">{{getLastMessage(contact).date}}</div>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div class="conversation-panel">
+
                <div v-show="isNotActive()" class="connection-screen">
                     <div class="connection__img">
                         <img src="img/connection.jpg" alt="">
@@ -79,15 +80,16 @@
                     </div>
                </div>
 
-               <div class="conversation-screen">
+               <div v-for="contact in contacts"
+               :class="[isVisible(contact) ? 'active' : '' , 'conversation-screen']">
                    <div class="conversation-header">
                     <div class="conversation-header__contact-info">
                         <div class="conversation-header__contact-avatar">
-                           <img src="img/avatar-02.png" alt="Piero">
+                           <img :src="contact.avatar" :alt="contact.name">
                         </div>
                         <div>
-                            <div class="conversation-header__contact-name">Piero</div>
-                            <div class="conversation-header__contact-access">Ultimo aceejdsaofghasgh</div>
+                            <div class="conversation-header__contact-name">{{contact.name}}</div>
+                            <div class="conversation-header__contact-access">Ultimo accesso {{getLastMessage(contact).date}}</div>
                         </div>
                     </div>
                     <ul class="conversation-header__action-list">
@@ -97,11 +99,9 @@
                     </ul>
                    </div>
                     <div class="conversation-messages">
-                        <div class="conversation-messages__message conversation-messages__message--received">
-                            adsfhkjadshfkjahsdfkljasdhf
-                        </div>
-                        <div class="conversation-messages__message conversation-messages__message--sent">
-                            adsfhkjadshfkjahsdfkljasdhf
+                        <div v-for="message in contact.messages" :class="['conversation-messages__message' ,
+                        message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']">
+                            {{message.text}}
                         </div>
                     </div>
                     <div class="conversation-input-bar">
@@ -111,6 +111,7 @@
                         <div class="input-bar__mic-icon"><i class="fas fa-microphone"></i></div>
                     </div>
                </div>
+
             </div>
         </div>
     </main>

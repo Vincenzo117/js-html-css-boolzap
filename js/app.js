@@ -54,7 +54,7 @@ const app = new Vue({
             {
                 name: 'Samuele',
                 avatar: 'img/avatar-03.png',
-                visible: false,
+                visible: true,
                 messages: [
                     {
                     date: '28/03/2020 10:10:40',
@@ -100,6 +100,17 @@ const app = new Vue({
             } else {
                 return false;
             }
+        },
+        isVisible(el) {
+            if (el.visible) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        getLastMessage (el) {
+            const lastMessage = el.messages[el.messages.length - 1];
+            return lastMessage;
         },
     }
 })

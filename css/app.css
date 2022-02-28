@@ -234,9 +234,12 @@ i {
 
 .conversation-screen {
     height: 100%;
-    display: flex;
     flex-direction: column;
     display: none;
+}
+
+.conversation-screen.active {
+    display: flex;
 }
 
 .conversation-header , .conversation-input-bar {
