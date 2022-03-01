@@ -167,14 +167,13 @@ const app = new Vue({
             }
         },
         searchContacts () {
-            for (i = 0; i < this.contacts.length; i++) {
-                let contact = this.contacts[i];
+            this.contacts.forEach(contact => {
                 if (contact.name.toUpperCase().indexOf(this.filter.toUpperCase()) !== -1) {
                     contact.visible = true;
                 } else {
                     contact.visible = false;
                 }
-            }
+            });
         }
     }
 })
