@@ -10,7 +10,8 @@ const app = new Vue({
             {
                 name: 'Michele',
                 avatar: 'img/avatar-01.png',
-                visible: false,
+                visible: true,
+                active: false,
                 messages: [
                     {
                         date: '01/10/2020 15:30:55',
@@ -32,7 +33,8 @@ const app = new Vue({
             {
                 name: 'Fabio',
                 avatar: 'img/avatar-02.png',
-                visible: false,
+                visible: true,
+                active: false,
                 messages: [
                     {
                         date: '03/20/2020 16:30:00',
@@ -54,7 +56,8 @@ const app = new Vue({
             {
                 name: 'Samuele',
                 avatar: 'img/avatar-03.png',
-                visible: false,
+                visible: true,
+                active: false,
                 messages: [
                     {
                         date: '03/28/2020 10:10:40',
@@ -76,7 +79,8 @@ const app = new Vue({
             {
                 name: 'Luisa',
                 avatar: 'img/avatar-04.png',
-                visible: false,
+                visible: true,
+                active: false,
                 messages: [
                     {
                         date: '01/10/2020 15:30:55',
@@ -93,18 +97,19 @@ const app = new Vue({
         ],
         activeContact: '',
         newMessage: '',
+        filter: '',
     },
     methods: {
         isAnyActive() {
-            const activeObjects = this.contacts.filter( el =>  el.visible == true );
+            const activeObjects = this.contacts.filter( el =>  el.active == true );
             if (activeObjects.length == 0) {
                 return false;
             } else {
                 return true;
             }
         },
-        isVisible(el) {
-            if (el.visible) {
+        isActive(el) {
+            if (el.active) {
                 return true;
             } else {
                 return false;
@@ -114,9 +119,9 @@ const app = new Vue({
             const lastMessage = contact.messages[contact.messages.length - 1];
             return lastMessage;
         },
-        updateVisible(contact) {
-            this.activeContact.visible = false;
-            contact.visible = true;
+        updateActive(contact) {
+            this.activeContact.active = false;
+            contact.active = true;
             this.activeContact = contact;
         },
         sendMessage(newMsg) {
@@ -160,6 +165,16 @@ const app = new Vue({
                     return dayjs(this.getLastMessage(contact).date).format('DD MMM HH:mm');
                 }   
             }
-        }    
+        },
+        searchContacts () {
+            for (i = 0; i < this.contacts.length; i++) {
+                let contact = this.contacts[i];
+                if (contact.name.toUpperCase().indexOf(this.filter.toUpperCase()) !== -1) {
+                    contact.visible = true;
+                } else {
+                    contact.visible = false;
+                }
+            }
+        }
     }
 })

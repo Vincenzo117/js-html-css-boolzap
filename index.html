@@ -64,7 +64,8 @@
 
                     <!---------- Sidebar searchbar ------------->
                     <div class="sidebar-contancts__search">
-                        <input id="contact-research" type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input id="contact-research" type="text" placeholder="Cerca o inizia una nuova chat"
+                               @keyup="searchContacts()" v-model="filter">
                         <div class="sidear-contacts__search-icon">
                             <i class="fas fa-search"></i>
                         </div>
@@ -72,9 +73,9 @@
 
                     <!---------- Sidebar contact list ---------->
                     <ul class="sidebar-contacts__list">
-                        <li v-for="contact in contacts"
-                            :class="['sidebar-contacts__contact' , contact.visible ? 'active' : '']"
-                            @click="updateVisible(contact)">
+                        <li v-for="contact in contacts" v-show="contact.visible" 
+                            :class="['sidebar-contacts__contact' , contact.active ? 'active' : '']"
+                            @click="updateActive(contact)">
                             <div class="contact__avatar">
                                 <img :src="contact.avatar" :alt="contact.name">
                             </div>
@@ -105,7 +106,7 @@
                 </div>
 
                 <!-------------- Chat screen ----------------->
-                <div v-for="contact in contacts" :class="[isVisible(contact) ? 'active' : '' , 'conversation-screen']">
+                <div v-for="contact in contacts" :class="[isActive(contact) ? 'active' : '' , 'conversation-screen']">
 
                     <!------- Conversation header ----------->
                     <div class="conversation-header">
@@ -140,7 +141,8 @@
                     <div class="conversation-input-bar">
                         <div class="input-bar__emoji-icon"><i class="fas fa-grin-alt"></i></div>
                         <div class="input-bar__attach-icon"><i class="fas fa-paperclip"></i></div>
-                        <input id="conversation-input" type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage(newMessage)">
+                        <input id="conversation-input" type="text" placeholder="Scrivi un messaggio" 
+                               v-model="newMessage" @keyup.enter="sendMessage(newMessage)">
                         <div class="input-bar__mic-icon"><i class="fas fa-microphone"></i></div>
                     </div>
 
