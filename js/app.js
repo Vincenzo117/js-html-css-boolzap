@@ -147,7 +147,11 @@ const app = new Vue({
         }, 
         getLastAccess(contact) {
             if (this.activeContact !== '' &&  !contact) {
-                return dayjs(this.getLastMessage(this.activeContact).date).format('DD MMM HH:mm');
+                if (dayjs(this.getLastMessage(this.activeContact).date).format('DD/MM/YYYY') === dayjs().format('DD/MM/YYYY')) {
+                    return 'oggi alle ' + dayjs(this.getLastMessage(this.activeContact).date).format('HH:mm');
+                } else {
+                    return dayjs(this.getLastMessage(this.activeContact).date).format('DD MMM HH:mm');
+                }
             } 
             else if(contact) {
                 if (dayjs(this.getLastMessage(contact).date).format('DD/MM/YYYY') === dayjs().format('DD/MM/YYYY')) {
