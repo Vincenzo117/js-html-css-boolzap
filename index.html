@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/media-queries.css">
     <title>Boolzap</title>
 </head>
+
 <body>
 
+    <!-------------- Background ------------------->
     <div class="background">
         <div class="background__header"></div>
         <div class="background__body"></div>
@@ -22,7 +29,10 @@
     <main>
         <div class="app-wrapper">
 
+            <!---------------------- Sidebar------------------------------->
             <div class="sidebar">
+
+                <!-------------- Sidebar header ----------------->
                 <div class="sidebar-header">
                     <div class="sidebar-header__profile-avatar">
                         <img :src="profile.avatar" :alt="profile.name">
@@ -33,6 +43,8 @@
                         <li class="sidebar-header__action-icon"><i class="fas fa-ellipsis-v"></i></li>
                     </ul>
                 </div>
+
+                <!-------------- Sidebar banner ----------------->
                 <div class="sidebar-banner">
                     <div class="sidebar-banner__icon">
                         <i class="fas fa-bell-slash"></i>
@@ -42,19 +54,27 @@
                             Ricevi notifiche di nuovi messaggi
                         </div>
                         <div class="sidebar-banner__text">
-                           <a href="#"> Attiva notifiche desktop <i class="fas fa-angle-right"></i></a>
+                            <a href="#"> Attiva notifiche desktop <i class="fas fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
+
+                <!-------------- Sidebar contacts ----------------->
                 <div class="sidear-contacts">
+
+                    <!---------- Sidebar searchbar ------------->
                     <div class="sidebar-contancts__search">
                         <input id="contact-research" type="text" placeholder="Cerca o inizia una nuova chat">
                         <div class="sidear-contacts__search-icon">
                             <i class="fas fa-search"></i>
                         </div>
                     </div>
+
+                    <!---------- Sidebar contact list ---------->
                     <ul class="sidebar-contacts__list">
-                        <li v-for="contact in contacts" class="sidebar-contacts__contact">
+                        <li v-for="contact in contacts"
+                            :class="['sidebar-contacts__contact' , contact.visible ? 'active' : '']"
+                            @click="updateVisible(contact)">
                             <div class="contact__avatar">
                                 <img :src="contact.avatar" :alt="contact.name">
                             </div>
@@ -65,54 +85,68 @@
                             <div class="contact__time">{{getLastMessage(contact).date}}</div>
                         </li>
                     </ul>
+
                 </div>
             </div>
 
+            <!---------------------- Conversation panel ------------------------------->
             <div class="conversation-panel">
 
-               <div v-show="isNotActive()" class="connection-screen">
+                <!-------------- Connection screen ----------------->
+                <div v-show="!isAnyActive()" class="connection-screen">
                     <div class="connection__img">
                         <img src="img/connection.jpg" alt="">
                     </div>
                     <div class="connection__text">
                         <h2 class="connection__text-title">Mantieni il telefono connesso</h2>
-                        <p>WhatsApp si collega al tuo telefono per sincronizzare i messaggi. Per ridurre l'utilizzo dei dati, collega il telefono al Wi-Fi.</p>
+                        <p>WhatsApp si collega al tuo telefono per sincronizzare i messaggi. Per ridurre l'utilizzo dei
+                            dati, collega il telefono al Wi-Fi.</p>
                     </div>
-               </div>
+                </div>
 
-               <div v-for="contact in contacts"
-               :class="[isVisible(contact) ? 'active' : '' , 'conversation-screen']">
-                   <div class="conversation-header">
-                    <div class="conversation-header__contact-info">
-                        <div class="conversation-header__contact-avatar">
-                           <img :src="contact.avatar" :alt="contact.name">
+                <!-------------- Chat screen ----------------->
+                <div v-for="contact in contacts" :class="[isVisible(contact) ? 'active' : '' , 'conversation-screen']">
+
+                    <!------- Conversation header ----------->
+                    <div class="conversation-header">
+                        <div class="conversation-header__contact-info">
+                            <div class="conversation-header__contact-avatar">
+                                <img :src="contact.avatar" :alt="contact.name">
+                            </div>
+                            <div>
+                                <div class="conversation-header__contact-name">{{contact.name}}</div>
+                                <div class="conversation-header__contact-access">Ultimo accesso
+                                    {{getLastMessage(contact).date}}</div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="conversation-header__contact-name">{{contact.name}}</div>
-                            <div class="conversation-header__contact-access">Ultimo accesso {{getLastMessage(contact).date}}</div>
-                        </div>
+                        <ul class="conversation-header__action-list">
+                            <li class="conversation-header__action-icon"><i class="fas fa-search"></i></li>
+                            <li class="conversation-header__action-icon"><i class="fas fa-paperclip"></i></li>
+                            <li class="conversation-header__action-icon"><i class="fas fa-ellipsis-v"></i></li>
+                        </ul>
                     </div>
-                    <ul class="conversation-header__action-list">
-                        <li class="conversation-header__action-icon"><i class="fas fa-search"></i></li>
-                        <li class="conversation-header__action-icon"><i class="fas fa-paperclip"></i></li>
-                        <li class="conversation-header__action-icon"><i class="fas fa-ellipsis-v"></i></li>
-                    </ul>
-                   </div>
+
+                    <!------- Conversation messages ----------->
                     <div class="conversation-messages">
-                        <div v-for="message in contact.messages" :class="['conversation-messages__message' ,
-                        message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']">
+                        <div v-for="message in contact.messages"
+                            :class="['conversation-messages__message' ,
+                            message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']">
                             {{message.text}}
                         </div>
                     </div>
+
+                    <!------- Conversation input ----------->
                     <div class="conversation-input-bar">
                         <div class="input-bar__emoji-icon"><i class="fas fa-grin-alt"></i></div>
                         <div class="input-bar__attach-icon"><i class="fas fa-paperclip"></i></div>
                         <input id="conversation-input" type="text" placeholder="Scrivi un messaggio">
                         <div class="input-bar__mic-icon"><i class="fas fa-microphone"></i></div>
                     </div>
-               </div>
+
+                </div>
 
             </div>
+
         </div>
     </main>
 
@@ -120,4 +154,5 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>

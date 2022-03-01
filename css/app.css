@@ -21,6 +21,7 @@ i {
     cursor: pointer;
 }
 
+
 /* Background */
 
 .background {
@@ -122,6 +123,9 @@ i {
     border-bottom: 1px solid #E9EDEF;
 }
 
+
+/* Contacts */
+
 #contact-research {
     padding: 13px 5px 13px 65px;
     border-radius: 5px;
@@ -150,6 +154,15 @@ i {
     padding: 10px 13px;
     align-items: center;
     gap: 15px;
+    cursor: pointer;
+}
+
+.sidebar-contacts__contact:hover {
+    background-color: #F5F6F6;
+}
+
+.sidebar-contacts__contact.active {
+    background-color: #F0F2F5;
 }
 
 .sidebar-contacts__contact::after{
@@ -174,7 +187,6 @@ i {
     object-fit: fill;
 }
 
-
 .contact__text{
     flex-grow: 1;
 }
@@ -196,6 +208,8 @@ i {
     top: 5px;
     right: 5px;
 }
+
+
 /* Conversation panel */
 
 .conversation-panel {
@@ -249,10 +263,11 @@ i {
 
 .conversation-messages {
     flex-grow: 1;
-    background-image: url("../img/conversation-bk.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-image: url("../img/background.png");
+    background-color: #EFEAE2;
+    background-repeat: repeat;
     background-position: center;
+    overflow: auto  ;
 }
 
 .conversation-header {
@@ -300,17 +315,56 @@ i {
 .conversation-messages__message {
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 15px;
+    filter: drop-shadow(0px 2px 3px #b6b5b5);;
+    position: relative;
 }
 
 .conversation-messages__message--received {
     background-color: white;
     align-self: flex-start;
+    border-top-left-radius: 0;
 }
 
 .conversation-messages__message--sent {
     background-color: #D9FDD3;
     align-self: flex-end;
+    border-top-right-radius: 0;
 }
+
+.conversation-messages__message--sent + .conversation-messages__message--received ,
+.conversation-messages__message--received + .conversation-messages__message--sent {
+    margin-top: 25px;
+}
+
+.conversation-messages__message--sent + .conversation-messages__message--received:before ,
+.conversation-messages__message--received:first-child::before {
+    content: '';
+    display: block;
+    border: 5px solid white;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 100%;
+}
+
+.conversation-messages__message--received + .conversation-messages__message--sent:before ,
+.conversation-messages__message--sent:first-child::before {
+    content: '';
+    display: block;
+    border: 5px solid #D9FDD3;
+    border-top-width: 5px;
+    border-left-width: 5px;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
 .conversation-input-bar {
     display: flex;
     align-items: center;
