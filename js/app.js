@@ -13,17 +13,17 @@ const app = new Vue({
                 visible: false,
                 messages: [
                     {
-                        date: '10/01/2020 15:30:55',
+                        date: '01/10/2020 15:30:55',
                         text: 'Hai portato a spasso il cane?',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
+                        date: '01/10/2020 15:50:00',
                         text: 'Ricordati di dargli da mangiare',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 16:15:22',
+                        date: '01/10/2020 16:15:22',
                         text: 'Tutto fatto!',
                         status: 'received'
                     }
@@ -35,17 +35,17 @@ const app = new Vue({
                 visible: false,
                 messages: [
                     {
-                        date: '20/03/2020 16:30:00',
+                        date: '03/20/2020 16:30:00',
                         text: 'Ciao come stai?',
                         status: 'sent'
                     },
                     {
-                        date: '20/03/2020 16:30:55',
+                        date: '03/20/2020 16:30:55',
                         text: 'Bene grazie! Stasera ci vediamo?',
                         status: 'received'
                     },
                     {
-                        date: '20/03/2020 16:35:00',
+                        date: '03/20/2020 16:35:00',
                         text: 'Mi piacerebbe ma devo andare a fare la spesa.',
                         status: 'sent'
                     }
@@ -57,17 +57,17 @@ const app = new Vue({
                 visible: false,
                 messages: [
                     {
-                        date: '28/03/2020 10:10:40',
+                        date: '03/28/2020 10:10:40',
                         text: 'La Marianna va in campagna',
                         status: 'received'
                     },
                     {
-                        date: '28/03/2020 10:20:10',
+                        date: '03/28/2020 10:20:10',
                         text: 'Sicuro di non aver sbagliato chat?',
                         status: 'sent'
                     },
                     {
-                        date: '28/03/2020 16:15:22',
+                        date: '03/28/2020 16:15:22',
                         text: 'Ah scusa!',
                         status: 'received'
                     }
@@ -79,12 +79,12 @@ const app = new Vue({
                 visible: false,
                 messages: [
                     {
-                        date: '10/01/2020 15:30:55',
+                        date: '01/10/2020 15:30:55',
                         text: 'Lo sai che ha aperto una nuova pizzeria?',
                         status: 'sent'
                     },
                     {
-                        date: '10/01/2020 15:50:00',
+                        date: '01/10/2020 15:50:00',
                         text: 'Si, ma preferirei andare al cinema',
                         status: 'received'
                     }
@@ -92,6 +92,7 @@ const app = new Vue({
             },
         ],
         activeContact: '',
+        newMessage: '',
     },
     methods: {
         isAnyActive() {
@@ -109,8 +110,8 @@ const app = new Vue({
                 return false;
             }
         },
-        getLastMessage (el) {
-            const lastMessage = el.messages[el.messages.length - 1];
+        getLastMessage (contact) {
+            const lastMessage = contact.messages[contact.messages.length - 1];
             return lastMessage;
         },
         updateVisible(contact) {
@@ -118,5 +119,43 @@ const app = new Vue({
             contact.visible = true;
             this.activeContact = contact;
         },
+        sendMessage(newMsg) {
+            if (newMsg !== '') {
+                const newMsgObject = {
+                    date: dayjs(),
+                    text: newMsg,
+                    status: 'sent'
+                }
+                this.activeContact.messages.push(newMsgObject);
+                this.newMessage= '';
+                this.getAnswer(this.activeContact);
+                console.dir(this.activeContact.messages)
+            }
+        },
+        getAnswer(contact) {
+            setTimeout( () => {
+                const answerObject = {
+                    date: dayjs(),
+                    text: 'Ok!',
+                    status: 'received'
+                }
+                contact.messages.push(answerObject);
+            } , 1000);
+        },
+        getHourMin(date) {
+            return dayjs(date).format('HH:mm');
+        }, 
+        getLastAccess(contact) {
+            if (this.activeContact !== '' &&  !contact) {
+                return dayjs(this.getLastMessage(this.activeContact).date).format('DD MMM HH:mm');
+            } 
+            else if(contact) {
+                if (dayjs(this.getLastMessage(contact).date).format('DD/MM/YYYY') === dayjs().format('DD/MM/YYYY')) {
+                    return 'oggi alle ' + dayjs(this.getLastMessage(contact).date).format('HH:mm');
+                } else {
+                    return dayjs(this.getLastMessage(contact).date).format('DD MMM HH:mm');
+                }   
+            }
+        }    
     }
 })

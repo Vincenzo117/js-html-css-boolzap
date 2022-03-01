@@ -82,7 +82,7 @@
                                 <div class="contact__name">{{contact.name}}</div>
                                 <div class="contact__last-message">{{getLastMessage(contact).text}}</div>
                             </div>
-                            <div class="contact__time">{{getLastMessage(contact).date}}</div>
+                            <div class="contact__time">{{getLastAccess(contact)}}</div>
                         </li>
                     </ul>
 
@@ -116,7 +116,7 @@
                             <div>
                                 <div class="conversation-header__contact-name">{{contact.name}}</div>
                                 <div class="conversation-header__contact-access">Ultimo accesso
-                                    {{getLastMessage(contact).date}}</div>
+                                    {{getLastAccess()}}</div>
                             </div>
                         </div>
                         <ul class="conversation-header__action-list">
@@ -132,6 +132,7 @@
                             :class="['conversation-messages__message' ,
                             message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']">
                             {{message.text}}
+                            <div class="conversation-messages__message-date"> {{getHourMin(message.date)}} </div>
                         </div>
                     </div>
 
@@ -139,7 +140,7 @@
                     <div class="conversation-input-bar">
                         <div class="input-bar__emoji-icon"><i class="fas fa-grin-alt"></i></div>
                         <div class="input-bar__attach-icon"><i class="fas fa-paperclip"></i></div>
-                        <input id="conversation-input" type="text" placeholder="Scrivi un messaggio">
+                        <input id="conversation-input" type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage(newMessage)">
                         <div class="input-bar__mic-icon"><i class="fas fa-microphone"></i></div>
                     </div>
 
@@ -150,7 +151,8 @@
         </div>
     </main>
 
-
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script>dayjs().format()</script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/app.js"></script>
 </body>
