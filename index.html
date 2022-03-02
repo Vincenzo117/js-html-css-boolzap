@@ -132,7 +132,7 @@
                         <div v-for="(message,index) in contact.messages"
                             :class="['conversation-messages__message' ,
                             message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']"
-                            @click="message.menu = true" @keyup.esc="message.menu = false"
+                            @click="!message.menu ? message.menu = true : message.menu = false"
                             v-show="message.text != ''"> {{message.text}}
                             <div class="conversation-messages__message-date"> {{getHourMin(message.date)}} </div>
                             <div class="conversation-messages__message-chevron"><i class="fa-solid fa-chevron-down"></i></div>

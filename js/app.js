@@ -192,27 +192,19 @@ const app = new Vue({
             });
         },
         deleteMessage(index) {
-            // let newContactMessages;
-            // if (contact.messages.length > 1) {
-            //     newContactMessages = contact.messages.filter((el) => {
-            //         if (el.text == message.text && el.date == message.date) {
-            //             return false;
-            //         }
-            //         else {
-            //             el.menu = false;
-            //             return true;
-            //         }
-            //     });
-            // } else {
-            //     newContactMessages = [{
-            //         text: '',
-            //         date: message.date,
-            //         status: 'last',
-            //         menu: false
-            //     }]
-            // }
-            // contact.messages = newContactMessages;
-            this.activeContact.messages.splice(index,1);
+            if (this.activeContact.messages.length > 1) {
+                this.activeContact.messages.splice(index,1);
+            } else {
+                this.activeContact.messages = [{
+                    text: '',
+                    date: this.activeContact.messages[0].date,
+                    status: 'last',
+                    menu: false
+                }]
+            }
+            let timeOut = setTimeout(() => {
+                this.activeContact.messages.forEach((el,i) => {this.activeContact.messages[i].menu = false;}) 
+            }, 50); 
         }
     }
 })
