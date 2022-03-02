@@ -306,6 +306,9 @@ i {
     margin-right: 20px;
 }
 
+
+/* Messages */
+
 .conversation-messages {
     display: flex;
     flex-direction: column;
@@ -317,9 +320,11 @@ i {
     max-width: 300px;
     border-radius: 5px;
     margin-bottom: 15px;
-    filter: drop-shadow(0px 2px 3px #b6b5b5);;
+    filter: drop-shadow(0px 2px 3px #b6b5b5);
     position: relative;
     padding-right: 50px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
 .conversation-messages__message--received {
@@ -373,6 +378,47 @@ i {
     right: 4px;
     font-size: 11px;
     color: #8696A0;
+}
+
+.conversation-messages__message-chevron {
+    position: absolute;
+    right: 8px;
+    top: 2px;
+    color: #8696A0;
+    display: none;
+}
+
+.conversation-messages__message:hover .conversation-messages__message-chevron{
+    display: block;
+}
+
+.conversation-messages__message-menu {
+    position: absolute;
+    right: 8px;
+    top: 2px;
+    background-color: white;
+    width: 150px;
+    filter: drop-shadow(0px 2px 3px #b6b5b5);
+    border-radius: 5px;
+    z-index: 100;
+}
+
+.conversation-messages__message--received .conversation-messages__message-menu {
+    transform: translateX(100%);
+}
+
+.conversation-messages__message--sent .conversation-messages__message-menu {
+    transform: translate(10% , -100%);
+}
+
+.conversation-messages__message-menu-item {
+    padding: 10px;
+    text-align: right;
+    z-index: 100;
+}
+
+.conversation-messages__message-menu-item:hover {
+    background-color: #F5F6F6;
 }
 
 .conversation-input-bar {

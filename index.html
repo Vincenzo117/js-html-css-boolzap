@@ -131,9 +131,16 @@
                     <div class="conversation-messages">
                         <div v-for="message in contact.messages"
                             :class="['conversation-messages__message' ,
-                            message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']">
-                            {{message.text}}
+                            message.status === 'sent' ? 'conversation-messages__message--sent' : 'conversation-messages__message--received']"
+                            @click="message.menu = true"
+                            v-show="message.text != ''"> {{message.text}}
                             <div class="conversation-messages__message-date"> {{getHourMin(message.date)}} </div>
+                            <div class="conversation-messages__message-chevron"><i class="fa-solid fa-chevron-down"></i></div>
+                            <ul class="conversation-messages__message-menu" v-show="message.menu">
+                                <li class="conversation-messages__message-menu-item">Message info</li>
+                                <li class="conversation-messages__message-menu-item" 
+                                    @click="deleteMessage(contact,message)">Delete message</li>
+                            </ul>
                         </div>
                     </div>
 

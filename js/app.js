@@ -16,17 +16,20 @@ const app = new Vue({
                     {
                         date: '01/10/2020 15:30:55',
                         text: 'Hai portato a spasso il cane?',
-                        status: 'sent'
+                        status: 'sent',
+                        menu: false
                     },
                     {
                         date: '01/10/2020 15:50:00',
                         text: 'Ricordati di dargli da mangiare',
-                        status: 'sent'
+                        status: 'sent',
+                        menu: false
                     },
                     {
                         date: '01/10/2020 16:15:22',
                         text: 'Tutto fatto!',
-                        status: 'received'
+                        status: 'received',
+                        menu: false
                     }
                 ],
             },
@@ -39,17 +42,20 @@ const app = new Vue({
                     {
                         date: '03/20/2020 16:30:00',
                         text: 'Ciao come stai?',
-                        status: 'sent'
+                        status: 'sent',
+                        menu: false
                     },
                     {
                         date: '03/20/2020 16:30:55',
                         text: 'Bene grazie! Stasera ci vediamo?',
-                        status: 'received'
+                        status: 'received',
+                        menu: false
                     },
                     {
                         date: '03/20/2020 16:35:00',
                         text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-                        status: 'sent'
+                        status: 'sent',
+                        menu: false
                     }
                 ],
             },
@@ -62,17 +68,20 @@ const app = new Vue({
                     {
                         date: '03/28/2020 10:10:40',
                         text: 'La Marianna va in campagna',
-                        status: 'received'
+                        status: 'received',
+                        menu: false
                     },
                     {
                         date: '03/28/2020 10:20:10',
                         text: 'Sicuro di non aver sbagliato chat?',
-                        status: 'sent'
+                        status: 'sent',
+                        menu: false
                     },
                     {
                         date: '03/28/2020 16:15:22',
                         text: 'Ah scusa!',
-                        status: 'received'
+                        status: 'received',
+                        menu: false
                     }
                 ],
             },
@@ -85,23 +94,25 @@ const app = new Vue({
                     {
                         date: '01/10/2020 15:30:55',
                         text: 'Lo sai che ha aperto una nuova pizzeria?',
-                        status: 'sent'
+                        status: 'sent',
+                        menu: false
                     },
                     {
                         date: '01/10/2020 15:50:00',
                         text: 'Si, ma preferirei andare al cinema',
-                        status: 'received'
+                        status: 'received',
+                        menu: false
                     }
                 ],
             },
         ],
         activeContact: '',
         newMessage: '',
-        filter: '',
+        filter: ''
     },
     methods: {
         isAnyActive() {
-            const activeObjects = this.contacts.filter( el =>  el.active == true );
+            const activeObjects = this.contacts.filter(el => el.active == true);
             if (activeObjects.length == 0) {
                 return false;
             } else {
@@ -115,9 +126,13 @@ const app = new Vue({
                 return false;
             }
         },
-        getLastMessage (contact) {
-            const lastMessage = contact.messages[contact.messages.length - 1];
-            return lastMessage;
+        getLastMessage(contact) {
+            if (contact.messages.length > 1) {
+                const lastMessage = contact.messages[contact.messages.length - 1];
+                return lastMessage;
+            } else {
+                return contact.messages[0];
+            }
         },
         updateActive(contact) {
             this.activeContact.active = false;
@@ -129,44 +144,45 @@ const app = new Vue({
                 const newMsgObject = {
                     date: dayjs(),
                     text: newMsg,
-                    status: 'sent'
+                    status: 'sent',
+                    menu: false
                 }
                 this.activeContact.messages.push(newMsgObject);
-                this.newMessage= '';
+                this.newMessage = '';
                 this.getAnswer(this.activeContact);
-                console.dir(this.activeContact.messages)
             }
         },
         getAnswer(contact) {
-            setTimeout( () => {
+            setTimeout(() => {
                 const answerObject = {
                     date: dayjs(),
                     text: 'Ok!',
-                    status: 'received'
+                    status: 'received',
+                    menu: false
                 }
                 contact.messages.push(answerObject);
-            } , 1000);
+            }, 1000);
         },
         getHourMin(date) {
             return dayjs(date).format('HH:mm');
-        }, 
+        },
         getLastAccess(contact) {
-            if (this.activeContact !== '' &&  !contact) {
+            if (this.activeContact !== '' && !contact) {
                 if (dayjs(this.getLastMessage(this.activeContact).date).format('DD/MM/YYYY') === dayjs().format('DD/MM/YYYY')) {
                     return 'oggi alle ' + dayjs(this.getLastMessage(this.activeContact).date).format('HH:mm');
                 } else {
                     return dayjs(this.getLastMessage(this.activeContact).date).format('DD MMM HH:mm');
                 }
-            } 
-            else if(contact) {
+            }
+            else if (contact) {
                 if (dayjs(this.getLastMessage(contact).date).format('DD/MM/YYYY') === dayjs().format('DD/MM/YYYY')) {
                     return 'oggi alle ' + dayjs(this.getLastMessage(contact).date).format('HH:mm');
                 } else {
                     return dayjs(this.getLastMessage(contact).date).format('DD MMM HH:mm');
-                }   
+                }
             }
         },
-        searchContacts () {
+        searchContacts() {
             this.contacts.forEach(contact => {
                 if (contact.name.toUpperCase().indexOf(this.filter.toUpperCase()) !== -1) {
                     contact.visible = true;
@@ -174,6 +190,28 @@ const app = new Vue({
                     contact.visible = false;
                 }
             });
+        },
+        deleteMessage(contact, message) {
+            let newContactMessages;
+            if (contact.messages.length > 1) {
+                newContactMessages = contact.messages.filter((el) => {
+                    if (el.text == message.text && el.date == message.date) {
+                        return false;
+                    }
+                    else {
+                        el.menu = false;
+                        return true;
+                    }
+                });
+            } else {
+                newContactMessages = [{
+                    text: '',
+                    date: message.date,
+                    status: 'last',
+                    menu: false
+                }]
+            }
+            contact.messages = newContactMessages;
         }
     }
 })
