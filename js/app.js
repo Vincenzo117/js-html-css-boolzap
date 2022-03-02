@@ -127,11 +127,11 @@ const app = new Vue({
             }
         },
         getLastMessage(contact) {
-            if (contact.messages.length > 1) {
+            if (contact.messages.length > 0) {
                 const lastMessage = contact.messages[contact.messages.length - 1];
                 return lastMessage;
             } else {
-                return contact.messages[0];
+                return null;
             }
         },
         updateActive(contact) {
@@ -191,27 +191,28 @@ const app = new Vue({
                 }
             });
         },
-        deleteMessage(contact, message) {
-            let newContactMessages;
-            if (contact.messages.length > 1) {
-                newContactMessages = contact.messages.filter((el) => {
-                    if (el.text == message.text && el.date == message.date) {
-                        return false;
-                    }
-                    else {
-                        el.menu = false;
-                        return true;
-                    }
-                });
-            } else {
-                newContactMessages = [{
-                    text: '',
-                    date: message.date,
-                    status: 'last',
-                    menu: false
-                }]
-            }
-            contact.messages = newContactMessages;
+        deleteMessage(index) {
+            // let newContactMessages;
+            // if (contact.messages.length > 1) {
+            //     newContactMessages = contact.messages.filter((el) => {
+            //         if (el.text == message.text && el.date == message.date) {
+            //             return false;
+            //         }
+            //         else {
+            //             el.menu = false;
+            //             return true;
+            //         }
+            //     });
+            // } else {
+            //     newContactMessages = [{
+            //         text: '',
+            //         date: message.date,
+            //         status: 'last',
+            //         menu: false
+            //     }]
+            // }
+            // contact.messages = newContactMessages;
+            this.activeContact.messages.splice(index,1);
         }
     }
 })
