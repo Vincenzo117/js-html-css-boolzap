@@ -65,7 +65,7 @@
                     <!---------- Sidebar searchbar ------------->
                     <div class="sidebar-contancts__search">
                         <input id="contact-research" type="text" placeholder="Cerca o inizia una nuova chat"
-                               @keyup="searchContacts()" v-model="filter">
+                               v-model="filter">
                         <div class="sidear-contacts__search-icon">
                             <i class="fas fa-search"></i>
                         </div>
@@ -73,7 +73,7 @@
 
                     <!---------- Sidebar contact list ---------->
                     <ul class="sidebar-contacts__list">
-                        <li v-for="contact in contacts" v-show="contact.visible" 
+                        <li v-for="contact in contattiFiltrati" v-show="contact.visible" 
                             :class="['sidebar-contacts__contact' , contact.active ? 'active' : '']"
                             @click="updateActive(contact)">
                             <div class="contact__avatar">

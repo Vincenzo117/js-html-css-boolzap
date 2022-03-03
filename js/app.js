@@ -182,15 +182,6 @@ const app = new Vue({
                 }
             }
         },
-        searchContacts() {
-            this.contacts.forEach(contact => {
-                if (contact.name.toUpperCase().indexOf(this.filter.toUpperCase()) !== -1) {
-                    contact.visible = true;
-                } else {
-                    contact.visible = false;
-                }
-            });
-        },
         deleteMessage(index) {
             if (this.activeContact.messages.length > 1) {
                 this.activeContact.messages.splice(index,1);
@@ -205,6 +196,17 @@ const app = new Vue({
             let timeOut = setTimeout(() => {
                 this.activeContact.messages.forEach((el,i) => {this.activeContact.messages[i].menu = false;}) 
             }, 50); 
+        },
+    },
+    computed:{
+        contattiFiltrati () {
+            return this.contacts.filter((el) => {
+                if (el.name.toUpperCase().includes(this.filter.toUpperCase())) {
+                    return true;
+                } else {
+                    return false;
+                }
+            })
         }
     }
 })
